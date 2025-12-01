@@ -408,25 +408,30 @@ being non-deterministic) could be the best fit.
 
 ## System at scale (1k claims to 10k to 100k)
 - At 100s-1k claims
-<br>
+<p>
 When sparse claim requests, the goal can be understanding the workflow and validating the decision model. Optimizations
 (DB queries, index addition, etc) are welcome but not doing them doesn't translate in high latency and bottlenecks yet
 since there is no high load.
-<br>
+</p>
+
 - At 10k claims
-<br>
+<p>
 Latency spikes start to happen when many claim requests arrive. Long running jobs (document understanding processing) compete
 with web requests coming from mobile/backoffice apps for DB access. If many claims require full manual attention, the vet team can't keep up. Asynchronous
 worker pipeline (specifically for the document understanding processing, see diagram above) with horizontal scaling becomes essential. The other
 services (document ingestion and validation, policy engine evaluation, etc) can be explicitly separated (and then retriable in isolation and
 idempotent since not tightly coupled to other services) and run on their own infrastructure so no need to compete for resources.
-  - In order to remove load from the vet team, early checks in the pipeline can be done (documentation complete? claim confidently out-of-scope?) or
+</p>
+<p>
+In order to remove load from the vet team, early checks in the pipeline can be done (documentation complete? claim confidently out-of-scope?) or
 for incomplete/invalid claims short-circuit the pipeline and ask the user for more info instead of wasting resources doing the e2e processing.
-<br>
+</p>
+
 - At 100k claims
-<br>
+<p>
 Event driven gets even more importance. Each stage in the diagram has its own queues and workers so each of them can scale independently; given that failures
 on one stage don't block other stages.
+</p>
 <br>
 - Note: Neither to say that metrics are important regardless the scale stage but especially at this 100k level:
   - Per-stage metrics
