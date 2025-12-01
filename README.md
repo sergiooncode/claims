@@ -433,7 +433,7 @@ Event driven gets even more importance. Each stage in the diagram has its own qu
 on one stage don't block other stages.
 </p>
 <br>
-- Note: Neither to say that metrics are important regardless the scale stage but especially at this 100k level:
+**Note:** Neither to say that metrics are important regardless the scale stage but especially at this 100k level:
   - Per-stage metrics
     - Throughput (claims/hour).
     - Latency (time spent in stage).
