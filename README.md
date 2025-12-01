@@ -326,9 +326,13 @@ So any architecture must be:
     - Change management
       - Vet team needs to trust and adopt the tool; they may initially distrust recommendations.
 
-> - The approach taken is a hybrid one in between a fully manual approach where only UI improvements are given to the vet team, and a fully ML/LLM-driven
-> (100% relying on models to understand unstructured documents, and come up with a reimbursement decide) or fully rule-based (where pet parents have to fill out forms
-> so structured data is collected and decisions are made on data structured as taken from the source).
+- Rationale for taking the approach
+  - The approach taken was a hybrid one where ML/LLM models are used for document understanding and its intermediate steps
+(line-invoice detection, condition classification, condition onset extraction, etc) and rule-based for applying all the dimensions of the policy (exclusions, waiting periods, max limits, etc)
+in the decision flow.
+  - For the sake of the reasoning the extreme approaches were considered: 1) fully manual approach where only UI improvements are given to the vet team, and 2) a fully ML/LLM-driven
+(100% relying on models to understand unstructured documents, and come up with a reimbursement decide) or 3) fully rule-based (where pet parents have to fill out forms
+so structured data is collected and decisions are made on data structured as taken from the source), but discarded in the final solution.
 
 ## Planning
 Assuming:
