@@ -401,25 +401,40 @@ being non-deterministic) could be the best fit.
 - In the 100s of claims with sparse requests, the goal can be understanding the workflow and validating the decision model. Optimizations
 (DB queries, index addition, etc) are welcome but not doing them doesn't translate in high latency and bottlenecks yet
 since there is no high load.
-
+<br></br>
 - At 10k claims
 Latency spikes start to happen when many claim requests arrive. Long running jobs (document understanding processing) compete
 with web requests coming from mobile/backoffice apps for DB access. If many claims require full manual attention, the vet team can't keep up. Asynchronous
 worker pipeline (specifically for the document understanding processing, see diagram above) with horizontal scaling becomes essential. The other
 services (document ingestion and validation, policy engine evaluation, etc) can be explicitly separated (and then retriable in isolation and
 idempotent since not tightly coupled to other services) and run on their own infrastructure so no need to compete for resources.
-
-In order to remove load from the vet team, early checks in the pipeline can be done (documentation complete? claim confidently out-of-scope?) or
+  - In order to remove load from the vet team, early checks in the pipeline can be done (documentation complete? claim confidently out-of-scope?) or
 for incomplete/invalid claims short-circuit the pipeline and ask the user for more info instead of wasting resources doing the e2e processing.
-
+<br></br>
 - At 100k claims
 Event driven gets even more importance. Each stage in the diagram has its own queues and workers so each of them can scale independently; given that failures
 on one stage don't block other stages.
+<br></br>
+- Note: Neither to say that metrics are important regardless the scale stage but especially at this 100k level:
+  - Per-stage metrics
+    - Throughput (claims/hour).
+    - Latency (time spent in stage).
+    - Error rate.
+
+  - Business KPIs
+    - % auto-approved, % overridden, average handle time.
+
+  - Health dashboards
+    - “Queues length” per stage.
+    - “Oldest unprocessed event” per stage.
 
 ## Bonus
-- Data foundation for future products
-  - Design the schema of structured claims data store so it becomes powerful structured data:
-    - Condition histories.
-    - Cost distributions.
-    - Clinic-level benchmarks.
-    - Risk-based pricing inputs.
+- Once claims are consistently stored, that data can unlock:
+  - Better pricing & risk segmentation
+  - Preventive care & recommendations
+    - Since the aggregation of medical history of pets of different breeds, ages, etc can be leveraged to come up with patterns
+  - Clinic benchmarking & partnerships
+  - Customer-facing transparency
+    - Anticipate to the clients and show them a claim breakdown from the start, and also builds trust in the fairness of decisions
+  - Operational optimisation
+    - Over time it'll be possible to know what data signals give place to a complex case so it can be anticipated and routed to experienced vets
