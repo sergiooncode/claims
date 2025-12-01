@@ -180,7 +180,7 @@ So any architecture must be:
 - Monitor metrics: time to decision, agreement rate with engine, financial impact.
 
 ## System design
-- Key design principles
+### Key design principles
   - Separation of concerns
     - Document understanding vs policy logic vs decision orchestration vs payment / reimbursement vs UX.
   - Deterministic where it matters, probabilistic where it helps
@@ -188,13 +188,13 @@ So any architecture must be:
   - Human in the loop by default
     - Especially at the beginning and for high-value/complex claims.
 
-- High level components (described in detail in following section)
+### High level components (described in detail in following section)
   - Note: the stores represented in the following diagram are not necessarily meant to be different logical stores/DBs, they could be but not necessarily
   <br></br>
   <img src="./assets/claims_barkibu.drawio.png" width="800" />
   <br></br>
 
-- Component details
+### Component details
   - Claim Intake & Document Storage
     - Claims API
       - Receives new claim submissions with:
