@@ -8,10 +8,14 @@
   - [Constraints, risks, complexities](#constraints-risks-complexities)
 - [Problem decomposition](#problem-decomposition)
 - [System design](#system-design)
-- [Pros and cons of this approach](#pros-and-cons-of-this-approach-)
+  - [Key design principles](#key-design-principles)
+  - [High level components (described in detail in following section)](#high-level-components-described-in-detail-in-following-section)
+  - [Component details](#component-details)
+- [Pros and cons of this approach](#pros-and-cons-of-this-approach)
 - [Planning](#planning)
+  - [Phases in order](#phases-in-order)
 - [Traditional ML vs LLM](#traditional-ml-vs-llm)
-- [System at scale (1k claims to 10k to 100k and beyond)](#system-at-scale-1k-claims-to-10k-to-100k-and-beyond)
+- [System at scale (1k claims to 10k to 100k)](#system-at-scale-1k-claims-to-10k-to-100k)
 - [Bonus](#bonus)
 
 Note: some fake documents have been added in the proposal to visually support in the thought process
