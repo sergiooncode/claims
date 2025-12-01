@@ -189,7 +189,7 @@ So any architecture must be:
     - Especially at the beginning and for high-value/complex claims.
 
 - High level components (described in detail in following section)
-  - Note: the stores represented in the following diagram are not necessarily meant to be different logical stores/DBs, they could be but necessarily
+  - Note: the stores represented in the following diagram are not necessarily meant to be different logical stores/DBs, they could be but not necessarily
   <br></br>
   <img src="./assets/claims_barkibu.drawio.png" width="800" />
   <br></br>
