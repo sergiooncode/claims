@@ -407,7 +407,9 @@ a smaller ML model won't be subject to "unpredictable" changes in the latest ver
 being non-deterministic) could be the best fit.
 
 ## System at scale (1k claims to 10k to 100k)
-- In the 100s-1k of claims with sparse requests, the goal can be understanding the workflow and validating the decision model. Optimizations
+- At 100s-1k claims
+<br>
+When sparse claim requests, the goal can be understanding the workflow and validating the decision model. Optimizations
 (DB queries, index addition, etc) are welcome but not doing them doesn't translate in high latency and bottlenecks yet
 since there is no high load.
 <br></br>
