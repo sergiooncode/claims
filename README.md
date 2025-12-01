@@ -407,11 +407,12 @@ a smaller ML model won't be subject to "unpredictable" changes in the latest ver
 being non-deterministic) could be the best fit.
 
 ## System at scale (1k claims to 10k to 100k)
-- In the 100s of claims with sparse requests, the goal can be understanding the workflow and validating the decision model. Optimizations
+- In the 100s-1k of claims with sparse requests, the goal can be understanding the workflow and validating the decision model. Optimizations
 (DB queries, index addition, etc) are welcome but not doing them doesn't translate in high latency and bottlenecks yet
 since there is no high load.
 <br></br>
 - At 10k claims
+<br>
 Latency spikes start to happen when many claim requests arrive. Long running jobs (document understanding processing) compete
 with web requests coming from mobile/backoffice apps for DB access. If many claims require full manual attention, the vet team can't keep up. Asynchronous
 worker pipeline (specifically for the document understanding processing, see diagram above) with horizontal scaling becomes essential. The other
@@ -421,6 +422,7 @@ idempotent since not tightly coupled to other services) and run on their own inf
 for incomplete/invalid claims short-circuit the pipeline and ask the user for more info instead of wasting resources doing the e2e processing.
 <br></br>
 - At 100k claims
+<br>
 Event driven gets even more importance. Each stage in the diagram has its own queues and workers so each of them can scale independently; given that failures
 on one stage don't block other stages.
 <br></br>
