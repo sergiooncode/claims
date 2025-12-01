@@ -346,8 +346,8 @@ The high level rationale behind a step-by-step planning should be:
 - Reduce risk by not letting ML/LLM models decide money flows until there are human-validated patterns of decision
 - Beyond that continue the full automation (progressively for higher risk claims but with higher confidence on a better validated system)
 
-Phases in order:
-<br>
+### Phases in order
+
 0. Discovery & specification
   - Understand how vet team works when their job is mainly manual and map their work.
   - Learning steps: identify common conditions and edge cases, define condition and procedure categories (and their urgency for future prioritization),
