@@ -145,7 +145,7 @@ So any architecture must be:
   - Condition onset date (or earliest mention).
 - Classify procedures/conditions into internal categories (e.g. surgery / consultation / tests, chronic vs acute).
 
-3. Policy modelling (done previous to claim time when insurance policy subscription happens)
+3. Policy modelling (can done beforehand since it's part of insurer's product)
 - Represent each policy as structured data:
   - Coverage percentages per condition category.
   - Exclusions (breed, conditions, chronic, cosmetic…).
