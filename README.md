@@ -347,29 +347,30 @@ The high level rationale behind a step-by-step planning should be:
 - Beyond that continue the full automation (progressively for higher risk claims but with higher confidence on a better validated system)
 
 Phases in order:
+<br>
 0. Discovery & specification
   - Understand how vet team works when their job is mainly manual and map their work.
   - Learning steps: identify common conditions and edge cases, define condition and procedure categories (and their urgency for future prioritization),
 catalogue policy products, define initial metrics, etc 
-  - **Deliverables**: decision flow diagrams, initial categories, prioritized lists of claim types
+    - **Deliverables**: decision flow diagrams, initial categories, prioritized lists of claim types
 
 1. Data foundation & structured representation
   - This is at the core of the decision workflow and the future data flywheel
   - Better OCR, invoice parsing or more automation may take time to get right and even change as technology improves but the output data of those has to live somewhere
 and it's the claims data store with a schema as accurate as possible.
-  - **Deliverables**: a running system with a store that fits the current needs and can store the decisions, even if the decisions are still somehow manual.
+    - **Deliverables**: a running system with a store that fits the current needs and can store the decisions, even if the decisions are still somehow manual.
 
 2. Document understanding
   - Even with a first (far from perfect) use of OCR/ML/LLM, the burden of the vet team having to transcribe data from invoices and vet reports can be reduced (and keep improving over time).
   - As the human vet team edits a suggestion from the automated process store the difference.
-  - **Deliverables**: backoffice UI for vet team is needed where they'll pre-filled claim fields (more or less accurate), accuracy metrics on each extraction, a growing corpus of
+    - **Deliverables**: backoffice UI for vet team is needed where they'll pre-filled claim fields (more or less accurate), accuracy metrics on each extraction, a growing corpus of
 differences: input docs -> OCR/ML/LLM suggestion -> human correction.
 
 3. Policy engine & decision engine for support
   - With structured data from invoices, vet medical history and policy configs decisions on claims can be made, even if partially manual.
   - At this stage the Decision engine acts as decision support, not autonomous decision maker yet.
   - The policy engine is implemented over the structured claim data, that is, per-invoice-line eligibility (covered, excluded, etc)
-  - **Deliverables**: the vet team can see what the engine suggested vs final decision, the vet team can accept/reject/tweak the engine suggestion with
+    - **Deliverables**: the vet team can see what the engine suggested vs final decision, the vet team can accept/reject/tweak the engine suggestion with
 one click on backoffice UI, and metrics of agreement rate and decision overrides are logged.
 
 4. Risk scoring & partial automation
@@ -378,7 +379,7 @@ of where the decision engine is solid and where is not.
   - Use historical data to define low-risk claims (claims under X€, single-line consultation, engine-human agreement > 98% in this segment, etc)
   - Implement auto-approval path for low-risk claims where even the payment service can be triggered.
   - Over time, as the previous stages improve, categories of claims with higher risk/amount/etc can be left to the automated engine.
-  - **Deliverables**: a progressively automated system with guardrails, the vet team focuses on the complex, expensive or ambiguous cases, monitoring dashboards
+    - **Deliverables**: a progressively automated system with guardrails, the vet team focuses on the complex, expensive or ambiguous cases, monitoring dashboards
 tracking auto-approval rate, override rate and financial impact. 
 
 ## Traditional ML vs LLM
