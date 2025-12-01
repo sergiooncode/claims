@@ -409,7 +409,7 @@ being non-deterministic) could be the best fit.
 ## System at scale (1k claims to 10k to 100k)
 - At 100s-1k claims
 <p>
-When sparse claim requests, the goal can be understanding the workflow and validating the decision model. Optimizations
+Espcially when claim requests are sparse, the goal can be understanding the workflow and validating the decision model. Optimizations
 (DB queries, index addition, etc) are welcome but not doing them doesn't translate in high latency and bottlenecks yet
 since there is no high load.
 </p>
