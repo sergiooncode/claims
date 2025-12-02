@@ -367,7 +367,7 @@ and it's the claims data store with a schema as accurate as possible.
 2. Document understanding
   - Even with a first (far from perfect) use of OCR/ML/LLM, the burden of the vet team having to transcribe data from invoices and vet reports can be reduced (and keep improving over time).
   - As the human vet team edits a suggestion from the automated process store the difference.
-    - **Deliverables**: backoffice UI for vet team is needed where they'll pre-filled claim fields (more or less accurate), accuracy metrics on each extraction, a growing corpus of
+    - **Deliverables**: backoffice UI for vet team is needed where they'll get pre-filled claim fields (more or less accurate), besides that UI, accuracy metrics on each extraction, a growing corpus of
 differences: input docs -> OCR/ML/LLM suggestion -> human correction.
 
 3. Policy engine & decision engine for support
