@@ -3,6 +3,22 @@ from django.db import models
 from common.models import BaseModel
 
 
+class Clinic(BaseModel):
+    """
+    A veterinary clinic that issues invoices for services.
+
+    Clinics can be reused across multiple invoices and claims.
+    """
+
+    name = models.CharField(max_length=255)
+    tax_id = models.CharField(
+        max_length=64,
+        blank=True,
+        help_text="Tax identifier / registration number of the clinic, if available.",
+    )
+    # Additional clinic fields (address, contact info, etc.) can be added later
+
+
 class Claim(BaseModel):
     """
     A single insurance claim initiated by a pet parent.
@@ -34,11 +50,23 @@ class Invoice(BaseModel):
         on_delete=models.CASCADE,
     )
 
-    clinic_name = models.CharField(max_length=255, blank=True)
-    clinic_tax_id = models.CharField(
-        max_length=64,
+    clinic = models.ForeignKey(
+        Clinic,
+        related_name="invoices",
+        on_delete=models.PROTECT,
+        null=True,
         blank=True,
-        help_text="Tax identifier / registration number of the clinic, if available.",
+        help_text="The clinic that issued this invoice. May be null if clinic info is not yet extracted.",
+    )
+    document = models.FileField(
+        upload_to="invoices/",
+        null=True,
+        blank=True,
+        help_text=(
+            "The scanned/screenshot document of the invoice. "
+            "Uses local filesystem storage in development, S3 in production "
+            "(configure via DEFAULT_FILE_STORAGE setting)."
+        ),
     )
     invoice_number = models.CharField(max_length=64, blank=True)
     issued_at = models.DateField(null=True, blank=True)

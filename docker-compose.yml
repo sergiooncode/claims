@@ -1,0 +1,45 @@
+services:
+  claims-service:
+    build:
+      context: .
+      args:
+          APP_ENV: 'local'
+    image: backend-service:local
+    environment:
+      ENVIRONMENT: 'local'
+      DJANGO_SETTINGS_MODULE: agent.settings.base
+    ports:
+      - "8001:8001"
+    networks:
+      - service-grp-net
+      - claims-service-net
+    command: python manage.py runserver -p 8001 -h 0.0.0.0
+    user: "${UID}:${GID}"
+    stdin_open: true
+    tty: true
+    env_file:
+      - .env.local
+    volumes:
+      - ./:/opt/claims-service/
+
+  claims-postgres:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: claims
+      POSTGRES_PASSWORD: claims
+      POSTGRES_DB: claims-db
+    command: -c fsync=off
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    networks:
+      - claims-service-net
+    ports:
+      - "5432:5432"
+
+networks:
+  claims-service-net: {}
+  service-grp-net:
+    external: true
+
+volumes:
+  pgdata: {}
