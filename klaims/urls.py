@@ -17,6 +17,11 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
+from claims.views import create_claim
+from users.views import login_view
+
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    path("admin/", admin.site.urls),
+    path("claims/", create_claim, name="create-claim"),
+    path("users/login/", login_view, name="user-login"),
 ]

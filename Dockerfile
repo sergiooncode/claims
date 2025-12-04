@@ -55,7 +55,10 @@ RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
     apt-get update --yes && \
     apt-get upgrade --yes && \
     apt-get install --no-install-recommends --yes \
-        postgresql-client
+        postgresql-client \
+        tesseract-ocr \
+        tesseract-ocr-eng \
+        tesseract-ocr-spa
 
 # Copy Python environment from builder
 COPY --from=builder /usr/local /usr/local

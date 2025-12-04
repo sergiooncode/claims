@@ -7,20 +7,20 @@ services:
     image: backend-service:local
     environment:
       ENVIRONMENT: 'local'
-      DJANGO_SETTINGS_MODULE: agent.settings.base
+      DJANGO_SETTINGS_MODULE: klaims.settings
     ports:
       - "8001:8001"
     networks:
       - service-grp-net
       - claims-service-net
-    command: python manage.py runserver -p 8001 -h 0.0.0.0
+    command: python manage.py runserver 0.0.0.0:8001
     user: "${UID}:${GID}"
     stdin_open: true
     tty: true
     env_file:
       - .env.local
     volumes:
-      - ./:/opt/claims-service/
+      - ./:/code
 
   claims-postgres:
     image: postgres:16-alpine

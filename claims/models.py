@@ -68,6 +68,10 @@ class Invoice(BaseModel):
             "(configure via DEFAULT_FILE_STORAGE setting)."
         ),
     )
+    extracted_text = models.TextField(
+        blank=True,
+        help_text="Text extracted from the invoice document using OCR.",
+    )
     invoice_number = models.CharField(max_length=64, blank=True)
     issued_at = models.DateField(null=True, blank=True)
 
